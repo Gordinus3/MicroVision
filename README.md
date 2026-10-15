@@ -1,97 +1,104 @@
-This is a new [**React Native**](https://reactnative.dev) project, bootstrapped using [`@react-native-community/cli`](https://github.com/react-native-community/cli).
+# MicroVision
 
-# Getting Started
+A mobile app for a microplastic detection system, built as an undergraduate thesis in Computer Engineering at the University of St. La Salle, Bacolod City.
 
-> **Note**: Make sure you have completed the [Set Up Your Environment](https://reactnative.dev/docs/set-up-your-environment) guide before proceeding.
+The system uses a YOLO-based object detection model running with a Raspberry Pi to detect microplastics under visible and UV light. This repository contains the companion **React Native mobile app**, which handles authentication and data storage through Firebase.
 
-## Step 1: Start Metro
 
-First, you will need to run **Metro**, the JavaScript build tool for React Native.
 
-To start the Metro dev server, run the following command from the root of your React Native project:
+## Overview
 
-```sh
-# Using npm
+Microplastics are difficult to spot and count by eye. This project explores an automated approach: capture a sample image, run it through an object detection model, and present the results in a mobile app.
+
+- **Detection:** YOLO-based object detection model trained on a custom dataset
+- **Hardware:** Raspberry Pi integrated with the detection model (device connectivity and system configuration)
+- **Mobile app:** React Native (TypeScript) app with Firebase authentication and cloud data storage
+
+## Results
+
+| Metric | Result |
+| --- | --- |
+| Detection accuracy (visible light) | 95% |
+| Detection accuracy (UV light) | 91% |
+| Training dataset | 700 self-collected samples, expanded with data augmentation |
+
+## System Overview
+
+```
+[Sample] -> [Raspberry Pi + camera] -> [YOLO detection model] -> [Firebase] -> [MicroVision mobile app]
+```
+
+
+## App Features
+- User sign-up and login (Firebase Authentication)
+- [View detection results]
+- [Save and browse past detection records]
+
+## Screenshots
+
+
+
+## Tech Stack
+
+- **Mobile:** React Native, TypeScript
+- **Backend:** Firebase (Authentication, Cloud Firestore, Cloud Storage)
+- **Detection:** YOLO-based object detection model
+- **Hardware:** Raspberry Pi
+- **Tooling:** Android Studio, VS Code, Git/GitHub
+
+## Repository Structure
+
+```
+MicroVision/
+├── App.tsx              # App entry point
+├── Screens/             # App screens
+├── components/          # Reusable UI components
+├── assets/fonts/        # Custom fonts
+├── images/              # Image assets
+├── android/ , ios/      # Native project files
+├── __tests__/           # Tests
+└── Firebaseconfig.js    # Firebase client configuration
+```
+
+## Getting Started
+
+### Prerequisites
+
+- Node.js and npm
+- React Native development environment ([setup guide](https://reactnative.dev/docs/set-up-your-environment))
+- Android Studio (for Android) or Xcode (for iOS)
+
+### Installation
+
+```bash
+git clone https://github.com/Gordinus3/MicroVision.git
+cd MicroVision
+npm install
+```
+
+### Firebase setup
+
+This app uses Firebase. To run it against your own project, replace the values in `Firebaseconfig.js` with the configuration from your Firebase project settings, and enable Authentication, Cloud Firestore, and Cloud Storage in the Firebase console.
+
+### Run the app
+
+```bash
+# Start Metro
 npm start
 
-# OR using Yarn
-yarn start
+# In a second terminal
+npm run android    # or: npm run ios
 ```
 
-## Step 2: Build and run your app
+## Scope of This Repository
 
-With Metro running, open a new terminal window/pane from the root of your React Native project, and use one of the following commands to build and run your Android or iOS app:
+This repository contains the **mobile application only**. The trained YOLO model weights, the dataset, and the Raspberry Pi detection scripts are not included here.
 
-### Android
+## Authors
 
-```sh
-# Using npm
-npm run android
+- **Emmanuel Clyde Flores**
+- **Renan Talorong**
+- **Gio Leonard Vasquez**
 
-# OR using Yarn
-yarn android
-```
 
-### iOS
-
-For iOS, remember to install CocoaPods dependencies (this only needs to be run on first clone or after updating native deps).
-
-The first time you create a new project, run the Ruby bundler to install CocoaPods itself:
-
-```sh
-bundle install
-```
-
-Then, and every time you update your native dependencies, run:
-
-```sh
-bundle exec pod install
-```
-
-For more information, please visit [CocoaPods Getting Started guide](https://guides.cocoapods.org/using/getting-started.html).
-
-```sh
-# Using npm
-npm run ios
-
-# OR using Yarn
-yarn ios
-```
-
-If everything is set up correctly, you should see your new app running in the Android Emulator, iOS Simulator, or your connected device.
-
-This is one way to run your app — you can also build it directly from Android Studio or Xcode.
-
-## Step 3: Modify your app
-
-Now that you have successfully run the app, let's make changes!
-
-Open `App.tsx` in your text editor of choice and make some changes. When you save, your app will automatically update and reflect these changes — this is powered by [Fast Refresh](https://reactnative.dev/docs/fast-refresh).
-
-When you want to forcefully reload, for example to reset the state of your app, you can perform a full reload:
-
-- **Android**: Press the <kbd>R</kbd> key twice or select **"Reload"** from the **Dev Menu**, accessed via <kbd>Ctrl</kbd> + <kbd>M</kbd> (Windows/Linux) or <kbd>Cmd ⌘</kbd> + <kbd>M</kbd> (macOS).
-- **iOS**: Press <kbd>R</kbd> in iOS Simulator.
-
-## Congratulations! :tada:
-
-You've successfully run and modified your React Native App. :partying_face:
-
-### Now what?
-
-- If you want to add this new React Native code to an existing application, check out the [Integration guide](https://reactnative.dev/docs/integration-with-existing-apps).
-- If you're curious to learn more about React Native, check out the [docs](https://reactnative.dev/docs/getting-started).
-
-# Troubleshooting
-
-If you're having issues getting the above steps to work, see the [Troubleshooting](https://reactnative.dev/docs/troubleshooting) page.
-
-# Learn More
-
-To learn more about React Native, take a look at the following resources:
-
-- [React Native Website](https://reactnative.dev) - learn more about React Native.
-- [Getting Started](https://reactnative.dev/docs/environment-setup) - an **overview** of React Native and how setup your environment.
-- [Learn the Basics](https://reactnative.dev/docs/getting-started) - a **guided tour** of the React Native **basics**.
-- [Blog](https://reactnative.dev/blog) - read the latest official React Native **Blog** posts.
-- [`@facebook/react-native`](https://github.com/facebook/react-native) - the Open Source; GitHub **repository** for React Native.
+Undergraduate thesis, BS Computer Engineering, University of St. La Salle, 2026.
